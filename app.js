@@ -1,6 +1,6 @@
 const boardGame = document.getElementById("boardGame");
 const infoDisplay = document.getElementById("info");
-const btnReset = document.getElementById("reset")
+const btnReset = document.getElementById("reset");
 
 //Array con 9 strings vacios, que van a ser las celdas
 const startCells = ["", "", "", "", "", "", "", "", ""];
@@ -34,7 +34,7 @@ function addGo(e) {
 
 function checkScore() {
   const allCells = document.querySelectorAll(".square");
-  const winningCombis = [
+  const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -44,33 +44,44 @@ function checkScore() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  winningCombis.forEach((array) => {
+  let existWinner = false;
+  winningCombos.forEach((array) => {
     const circleWins = array.every((cell) =>
       allCells[cell].firstChild?.classList.contains("Circle")
     );
     if (circleWins) {
       infoDisplay.textContent = "Circle Wins!";
-      infoDisplay.style.color = "blue"
-      infoDisplay.style.scale = 1.4
+      infoDisplay.style.color = "blue";
+      infoDisplay.style.scale = 1.4;
       allCells.forEach((cell) => cell.replaceWith(cell.cloneNode(true)));
-      btnReset.classList.remove('hide')
+      btnReset.classList.remove("hide");
+      existWinner = true;
     }
   });
-  winningCombis.forEach((array) => {
+  winningCombos.forEach((array) => {
     const crossWins = array.every((cell) =>
       allCells[cell].firstChild?.classList.contains("Cross")
     );
     if (crossWins) {
       infoDisplay.textContent = "Cross Wins!";
-      infoDisplay.style.color = "red"
-      infoDisplay.style.scale = 1.4
+      infoDisplay.style.color = "red";
+      infoDisplay.style.scale = 1.4;
       allCells.forEach((cell) => cell.replaceWith(cell.cloneNode(true)));
-      btnReset.classList.remove('hide')
-
+      btnReset.classList.remove("hide");
+      existWinner = true;
     }
   });
+  if (
+    !existWinner &&
+    Array.from(allCells).every((cell) => cell.firstChild !== null)
+  ) {
+    infoDisplay.textContent = "It's a draw!";
+    infoDisplay.style.color = "green";
+    infoDisplay.style.scale = 1.4;
+    btnReset.classList.remove("hide");
+  }
 }
 
-btnReset.addEventListener("click", ()=>{
-    location.reload()
-})
+btnReset.addEventListener("click", () => {
+  location.reload();
+});
