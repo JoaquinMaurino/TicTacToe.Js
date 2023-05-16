@@ -44,7 +44,7 @@ function checkScore() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  let existWinner = false;
+
   winningCombos.forEach((array) => {
     const circleWins = array.every((cell) =>
       allCells[cell].firstChild?.classList.contains("Circle")
@@ -55,7 +55,6 @@ function checkScore() {
       infoDisplay.style.scale = 1.4;
       allCells.forEach((cell) => cell.replaceWith(cell.cloneNode(true)));
       btnReset.classList.remove("hide");
-      existWinner = true;
     }
   });
   winningCombos.forEach((array) => {
@@ -68,11 +67,9 @@ function checkScore() {
       infoDisplay.style.scale = 1.4;
       allCells.forEach((cell) => cell.replaceWith(cell.cloneNode(true)));
       btnReset.classList.remove("hide");
-      existWinner = true;
     }
   });
   if (
-    !existWinner &&
     Array.from(allCells).every((cell) => cell.firstChild !== null)
   ) {
     infoDisplay.textContent = "It's a draw!";
