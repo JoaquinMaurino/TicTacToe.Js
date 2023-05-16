@@ -1,0 +1,81 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: rgb(214, 214, 214);
+    font-family: 'Open Sans', sans-serif;
+}
+
+ #boardGame{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px black;
+}
+
+.square{
+    width: 200px;
+    height: 200px;
+    border: solid 1px black;
+    box-sizing: border-box;
+    background-color: rgb(238, 237, 237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square:hover{
+    background-color: rgb(216, 216, 216);
+}
+
+.Circle{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 25px solid blue
+
+}
+
+.Cross{
+    height: 150px;
+    width: 150px;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.Cross::before, .Cross::after{
+    content: "";
+    position: absolute;
+    background-color: red;
+}
+
+.Cross::before{
+    left: 50%;
+    width: 30%;
+    margin-left: -15%;
+    height: 100%;
+}
+
+.Cross::after{
+    top: 50%;
+    height: 30%;
+    margin-top: -15%;
+    width: 100%;
+}
+
+.hide{
+    display: none;
+}
+
+#reset{
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 3px 3px rgb(165, 165, 165);
+    font-weight: bold;
+
+}
